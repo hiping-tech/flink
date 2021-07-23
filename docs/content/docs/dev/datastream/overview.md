@@ -380,7 +380,7 @@ Collection-based:
 - `fromParallelCollection(SplittableIterator, Class)` - Creates a data stream from an iterator, in
   parallel. The class specifies the data type of the elements returned by the iterator.
 
-- `generateSequence(from, to)` - Generates the sequence of numbers in the given interval, in
+- `fromSequence(from, to)` - Generates the sequence of numbers in the given interval, in
   parallel.
 
 Custom:
@@ -435,7 +435,7 @@ Collection-based:
 - `fromParallelCollection(SplittableIterator)` - Creates a data stream from an iterator, in
   parallel. The class specifies the data type of the elements returned by the iterator.
 
-- `generateSequence(from, to)` - Generates the sequence of numbers in the given interval, in
+- `fromSequence(from, to)` - Generates the sequence of numbers in the given interval, in
   parallel.
 
 Custom:
@@ -562,7 +562,7 @@ DataStream<Integer> output = iterationBody.filter(/* some other part of the stre
 For example, here is program that continuously subtracts 1 from a series of integers until they reach zero:
 
 ```java
-DataStream<Long> someIntegers = env.generateSequence(0, 1000);
+DataStream<Long> someIntegers = env.fromSequence(0, 1000);
 
 IterativeStream<Long> iteration = someIntegers.iterate();
 
@@ -610,7 +610,7 @@ val iteratedStream = someDataStream.iterate(
 For example, here is program that continuously subtracts 1 from a series of integers until they reach zero:
 
 ```scala
-val someIntegers: DataStream[Long] = env.generateSequence(0, 1000)
+val someIntegers: DataStream[Long] = env.fromSequence(0, 1000)
 
 val iteratedStream = someIntegers.iterate(
   iteration => {
@@ -661,7 +661,7 @@ Usage:
 LocalStreamEnvironment env = StreamExecutionEnvironment.createLocalEnvironment();
 env.setBufferTimeout(timeoutMillis);
 
-env.generateSequence(1,10).map(new MyMapper()).setBufferTimeout(timeoutMillis);
+env.fromSequence(1,10).map(new MyMapper()).setBufferTimeout(timeoutMillis);
 ```
 {{< /tab >}}
 {{< tab "Scala" >}}
@@ -669,7 +669,7 @@ env.generateSequence(1,10).map(new MyMapper()).setBufferTimeout(timeoutMillis);
 val env: LocalStreamEnvironment = StreamExecutionEnvironment.createLocalEnvironment
 env.setBufferTimeout(timeoutMillis)
 
-env.generateSequence(1,10).map(myMap).setBufferTimeout(timeoutMillis)
+env.fromSequence(1,10).map(myMap).setBufferTimeout(timeoutMillis)
 ```
 {{< /tab >}}
 {{< /tabs >}}
